@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Companies - HireFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="companies">
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Primary navigation">
+      <a class="brand" href="index.html"><span class="brand-mark">HF</span><span>HireFlow</span></a>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="nav-menu" id="navMenu">
+        <a class="nav-link" href="index.html">Jobs</a>
+        <a class="nav-link active" href="companies.html">Companies</a>
+        <a class="nav-link" href="saved-jobs.html">Saved Jobs</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><span class="theme-icon">☾</span><span class="theme-label">Dark</span></button>
+        <a class="btn btn-primary" href="index.html#post-job">Post a Job</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page-shell container">
+    <section class="page-heading">
+      <span class="section-kicker">Browse companies</span>
+      <h1>Teams hiring on HireFlow</h1>
+      <p>Explore company profiles, hiring focus, open roles, and the kind of work each team is building.</p>
+    </section>
+    <div class="company-grid" id="companyGrid"></div>
+  </main>
+
+  <div class="modal-backdrop" id="companyModal" aria-hidden="true">
+    <section class="modal company-modal" role="dialog" aria-modal="true" aria-labelledby="companyModalTitle">
+      <button class="icon-btn modal-close" type="button" aria-label="Close company profile">×</button>
+      <div id="companyModalContent"></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

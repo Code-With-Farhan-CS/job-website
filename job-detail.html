@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Detail - HireFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="detail">
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Primary navigation">
+      <a class="brand" href="index.html"><span class="brand-mark">HF</span><span>HireFlow</span></a>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="nav-menu" id="navMenu">
+        <a class="nav-link" href="index.html">Jobs</a>
+        <a class="nav-link" href="companies.html">Companies</a>
+        <a class="nav-link" href="saved-jobs.html">Saved Jobs</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><span class="theme-icon">☾</span><span class="theme-label">Dark</span></button>
+        <a class="btn btn-primary" href="index.html#post-job">Post a Job</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page-shell container">
+    <a class="back-link" href="index.html">← Back to jobs</a>
+    <section class="detail-page" id="detailPage"></section>
+  </main>
+
+  <div class="modal-backdrop" id="applyModal" aria-hidden="true">
+    <section class="modal apply-modal" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
+      <button class="icon-btn modal-close" type="button" aria-label="Close application form">×</button>
+      <div class="modal-heading">
+        <span class="section-kicker">Application</span>
+        <h2 id="applyTitle">Apply now</h2>
+        <p id="applySubtitle">Send a polished application in seconds.</p>
+      </div>
+      <form class="apply-form" id="applyForm">
+        <label>Name <input type="text" name="name" required placeholder="Your name"></label>
+        <label>Email <input type="email" name="email" required placeholder="you@example.com"></label>
+        <label>Cover Letter <textarea name="cover" rows="5" required placeholder="Tell the company why you are a great fit"></textarea></label>
+        <label>Resume <input type="file" name="resume" accept=".pdf,.doc,.docx"></label>
+        <label>Portfolio Link <input type="url" name="portfolio" placeholder="https://yourportfolio.com"></label>
+        <button class="btn btn-primary full-width" type="submit">Submit Application</button>
+      </form>
+      <div class="success-message hidden" id="applySuccess">
+        <div class="success-burst">✓</div>
+        <h3>Application sent</h3>
+        <p>Your application has been submitted successfully.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

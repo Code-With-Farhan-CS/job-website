@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HireFlow - Job Board & Freelance Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-label="HireFlow home">
+        <span class="brand-mark">HF</span>
+        <span>HireFlow</span>
+      </a>
+
+      <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <a class="nav-link active" href="index.html">Jobs</a>
+        <a class="nav-link" href="companies.html">Companies</a>
+        <a class="nav-link" href="saved-jobs.html">Saved Jobs</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-icon">☾</span>
+          <span class="theme-label">Dark</span>
+        </button>
+        <a class="btn btn-primary" href="#post-job">Post a Job</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Remote jobs, freelance gigs, and teams hiring now</span>
+          <h1>Find meaningful work with companies that move fast.</h1>
+          <p>Search curated roles, compare companies, save opportunities, and apply from one clean workspace.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#jobs">Explore Jobs</a>
+            <a class="btn btn-ghost" href="companies.html">Browse Companies</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Market highlights">
+          <div class="metric-card">
+            <span class="metric-value">20+</span>
+            <span class="metric-label">Fresh roles</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">$145k</span>
+            <span class="metric-label">Top salary</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">4.9</span>
+            <span class="metric-label">Talent rating</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="search-band" aria-label="Search jobs">
+      <div class="container">
+        <form class="search-shell" id="jobSearchForm">
+          <label class="visually-hidden" for="searchInput">Search jobs, skills, or companies</label>
+          <span class="search-icon">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search jobs, skills, or companies">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="jobs-layout container" id="jobs">
+      <aside class="filter-panel" id="filterPanel" aria-label="Job filters">
+        <div class="filter-head">
+          <div>
+            <span class="section-kicker">Filters</span>
+            <h2>Refine results</h2>
+          </div>
+          <button class="icon-btn filter-close" type="button" aria-label="Close filters">×</button>
+        </div>
+
+        <div class="filter-group">
+          <label for="typeFilter">Job Type</label>
+          <select id="typeFilter" data-filter="type">
+            <option value="">Any type</option>
+            <option value="Full-time">Full-time</option>
+            <option value="Contract">Contract</option>
+            <option value="Freelance">Freelance</option>
+            <option value="Remote">Remote</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="levelFilter">Experience Level</label>
+          <select id="levelFilter" data-filter="level">
+            <option value="">Any level</option>
+            <option value="Junior">Junior</option>
+            <option value="Mid-level">Mid-level</option>
+            <option value="Senior">Senior</option>
+            <option value="Lead">Lead</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="salaryFilter">Salary Range</label>
+          <select id="salaryFilter" data-filter="salary">
+            <option value="">Any salary</option>
+            <option value="0-70">$0 - $70k</option>
+            <option value="70-100">$70k - $100k</option>
+            <option value="100-130">$100k - $130k</option>
+            <option value="130-999">$130k+</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="locationFilter">Location</label>
+          <select id="locationFilter" data-filter="location">
+            <option value="">Any location</option>
+            <option value="Remote">Remote</option>
+            <option value="New York">New York</option>
+            <option value="San Francisco">San Francisco</option>
+            <option value="Austin">Austin</option>
+            <option value="London">London</option>
+            <option value="Berlin">Berlin</option>
+          </select>
+        </div>
+
+        <button class="btn btn-secondary full-width" id="clearFilters" type="button">Clear Filters</button>
+      </aside>
+
+      <div class="jobs-content">
+        <div class="results-toolbar">
+          <div>
+            <span class="section-kicker">Open roles</span>
+            <h2><span id="jobCount">0</span> jobs available</h2>
+          </div>
+          <button class="btn btn-secondary filter-open" type="button">Filters</button>
+        </div>
+        <div class="active-filters" id="activeFilters" aria-live="polite"></div>
+        <div class="job-grid skeleton-grid" id="skeletonGrid" aria-hidden="true"></div>
+        <div class="job-grid" id="jobGrid"></div>
+        <div class="empty-state hidden" id="emptyState">
+          <img src="assets/empty-jobs.svg" alt="">
+          <h3>No matching jobs</h3>
+          <p>Try removing a filter or searching for a broader skill.</p>
+        </div>
+        <button class="btn btn-secondary load-more" id="loadMore" type="button">Load More</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="jobModal" aria-hidden="true">
+    <section class="modal job-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="icon-btn modal-close" type="button" aria-label="Close job details">×</button>
+      <div id="jobModalContent"></div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="applyModal" aria-hidden="true">
+    <section class="modal apply-modal" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
+      <button class="icon-btn modal-close" type="button" aria-label="Close application form">×</button>
+      <div class="modal-heading">
+        <span class="section-kicker">Application</span>
+        <h2 id="applyTitle">Apply now</h2>
+        <p id="applySubtitle">Send a polished application in seconds.</p>
+      </div>
+      <form class="apply-form" id="applyForm">
+        <label>Name <input type="text" name="name" required placeholder="Your name"></label>
+        <label>Email <input type="email" name="email" required placeholder="you@example.com"></label>
+        <label>Cover Letter <textarea name="cover" rows="5" required placeholder="Tell the company why you are a great fit"></textarea></label>
+        <label>Resume <input type="file" name="resume" accept=".pdf,.doc,.docx"></label>
+        <label>Portfolio Link <input type="url" name="portfolio" placeholder="https://yourportfolio.com"></label>
+        <button class="btn btn-primary full-width" type="submit">Submit Application</button>
+      </form>
+      <div class="success-message hidden" id="applySuccess">
+        <div class="success-burst">✓</div>
+        <h3>Application sent</h3>
+        <p>Your application has been submitted successfully.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
